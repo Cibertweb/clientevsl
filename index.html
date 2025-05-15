@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Nombre de tu Marca] - Accesorios que Definen tu Estilo Profesional</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        /* Estilos Generales y de Cuerpo */
+        body {
+            font-family: 'Roboto', sans-serif; /* Fuente principal para el cuerpo del texto */
+            background: linear-gradient(135deg, #1c1c1c 0%, #2d2d2d 100%); /* Degradado oscuro sutil para el fondo */
+            color: #e0e0e0; /* Color de texto principal claro para contraste */
+            overflow-x: hidden; /* Evita el desbordamiento horizontal */
+            line-height: 1.7; /* Espaciado de línea para mejor legibilidad */
+        }
+
+        /* Estilos para Encabezados */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif; /* Fuente distintiva para encabezados */
+            color: #ffffff; /* Color blanco para encabezados, destacando sobre el fondo oscuro */
+            font-weight: 600; /* Peso de fuente para encabezados */
+            margin-bottom: 0.75rem;
+        }
+
+        /* Estilo para secciones principales del VSL */
+        .vsl-section {
+            padding: 80px 15px; /* Espaciado vertical y horizontal */
+            text-align: center; /* Alineación de texto central por defecto */
+            opacity: 0; /* Inicialmente invisible para animación de aparición */
+            transform: translateY(40px); /* Desplazamiento inicial para animación */
+            transition: opacity 0.9s ease-out, transform 0.9s ease-out; /* Transición suave para la animación */
+        }
+
+        .vsl-section.is-visible {
+            opacity: 1; /* Sección visible */
+            transform: translateY(0); /* Sección en su posición original */
+        }
+
+        /* Sección Hero (Principal) */
+        .hero-section {
+            /* Imagen de fondo con superposición de degradado para legibilidad del texto */
+            background: linear-gradient(rgba(28, 28, 28, 0.88), rgba(45, 45, 45, 0.92)), url('https://placehold.co/1920x1080/222222/555555?text=Fondo+Elegante+de+Accesorios') no-repeat center center;
+            background-size: cover; /* Cubrir toda la sección */
+            min-height: 95vh; /* Altura mínima, casi toda la pantalla */
+            display: flex;
+            align-items: center; /* Alineación vertical */
+            justify-content: center; /* Alineación horizontal */
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.6); /* Sombra de texto para destacar */
+        }
+
+        .hero-section h1 {
+            font-size: clamp(2.5rem, 5vw, 3.8rem); /* Tamaño de fuente adaptable */
+            font-weight: 700; /* Mayor peso para el título principal */
+            margin-bottom: 25px;
+        }
+
+        .hero-section p {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem); /* Tamaño de fuente adaptable para el subtítulo */
+            font-weight: 300; /* Peso ligero para el subtítulo */
+            max-width: 750px; /* Ancho máximo para el párrafo */
+            margin: 0 auto 35px auto; /* Centrado y con margen inferior */
+        }
+
+        /* Color de Acento */
+        .accent-color {
+            color: #bda060; /* Dorado sutil como color de acento principal */
+        }
+
+        /* Estilo para Botones Personalizados */
+        .btn-custom-primary {
+            background-color: #bda060; /* Color de fondo del botón (acento) */
+            border: 2px solid #bda060; /* Borde del mismo color */
+            color: #1c1c1c; /* Color de texto oscuro para contraste sobre el botón */
+            padding: 14px 35px; /* Espaciado interno del botón */
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px; /* Bordes completamente redondeados */
+            transition: all 0.35s ease; /* Transición suave para todos los efectos */
+            text-transform: uppercase; /* Texto en mayúsculas */
+            letter-spacing: 1px; /* Espaciado entre letras */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn-custom-primary:hover,
+        .btn-custom-primary:focus {
+            background-color: #a88a4f; /* Color de fondo al pasar el mouse (más oscuro) */
+            border-color: #a88a4f;
+            color: #ffffff; /* Color de texto claro al pasar el mouse */
+            box-shadow: 0 6px 18px rgba(189, 160, 96, 0.35); /* Sombra más pronunciada */
+            transform: translateY(-3px); /* Ligero desplazamiento hacia arriba */
+        }
+
+        /* Iconos de Características (si se usan) */
+        .feature-icon {
+            font-size: 3.5rem; /* Tamaño grande para iconos */
+            color: #bda060; /* Color de acento */
+            margin-bottom: 25px;
+        }
+
+        /* Placeholder para Imágenes de Producto (simulación) */
+        .img-placeholder {
+            width: 100%;
+            max-width: 380px;
+            height: 280px;
+            background-color: #333333; /* Fondo oscuro para el placeholder */
+            border: 1px solid #4a4a4a; /* Borde sutil */
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777777; /* Color de texto del placeholder */
+            border-radius: 8px; /* Bordes redondeados */
+            font-style: italic;
+        }
+
+        /* Estilos para el contenedor de video responsivo */
+        .video-responsive-wrapper {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Ajusta el ancho máximo del video como desees */
+            margin: 20px auto; /* Centra el contenedor del video */
+            border-radius: 8px; /* Opcional: para que coincida con el img-placeholder */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Sombra sutil */
+        }
+
+        .video-responsive-wrapper::before {
+            content: "";
+            display: block;
+            padding-top: 56.25%; /* Proporción 16:9 (9 / 16 * 100) */
+        }
+
+        .video-responsive-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0; /* Remueve el borde del iframe si lo tuviera */
+        }
+
+
+        /* Sección de Testimonios */
+        .testimonial-section {
+            background-color: #222222; /* Fondo ligeramente diferente para esta sección */
+        }
+
+        .testimonial-card {
+            background-color: #2c2c2c; /* Fondo de la tarjeta de testimonio */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+
+        .testimonial-quote {
+            font-style: italic;
+            font-size: 1.15rem;
+            margin-bottom: 15px;
+            color: #d0d0d0;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #bda060; /* Nombre del autor con color de acento */
+            font-size: 1rem;
+        }
+
+        /* Sección de Características con tarjetas */
+        .feature-card {
+            background-color: #2a2a2a;
+            padding: 30px;
+            border-radius: 10px;
+            height: 100%; /* Para que todas las tarjetas tengan la misma altura en una fila */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+        .feature-card h4 {
+            margin-top: 15px;
+        }
+
+        /* Pie de Página */
+        .footer {
+            background-color: #111111; /* Fondo muy oscuro para el pie de página */
+            color: #888888; /* Color de texto tenue */
+            padding: 40px 15px;
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: #bda060; /* Enlaces con color de acento */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: #ffffff; /* Enlaces más claros al pasar el mouse */
+        }
+
+        /* Ajustes Responsivos Específicos */
+        @media (max-width: 768px) {
+            .vsl-section {
+                padding: 60px 15px;
+            }
+            .hero-section {
+                min-height: 80vh;
+            }
+            .feature-card {
+                margin-bottom: 30px; /* Espacio entre tarjetas en móvil */
+            }
+            .video-responsive-wrapper {
+                max-width: 95%; /* Asegura que no exceda el ancho en móviles */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-section vsl-section">
+        <div class="container">
+            <h1>Eleva tu <span class="accent-color">Estilo Profesional</span>. Define tu <span class="accent-color">Impacto</span>.</h1>
+            <p>Descubre cómo los accesorios de vestir correctos no solo complementan, sino que transforman tu imagen y confianza profesional.</p>
+            <a href="#cta-section" class="btn btn-custom-primary mt-4 scroll-link">Descubrir la Colección</a>
+        </div>
+    </header>
+
+    <section id="problem" class="vsl-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <h2>¿Sientes que a tu Imagen Profesional le Falta <span class="accent-color">Ese Algo Distintivo</span>?</h2>
+                    <p class="lead mt-3">En un mundo competitivo, la primera impresión es crucial. Muchos profesionales invierten en su vestimenta base, pero a menudo subestiman el poder de los detalles: esos accesorios que realmente proyectan autoridad, sofisticación y atención al detalle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="agitate" class="vsl-section" style="background-color: #1f1f1f;"> <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <h2>Cuando los Detalles se Pasan por Alto, las <span class="accent-color">Oportunidades También Pueden Hacerlo</span></h2>
+                    <p>Una imagen que no está pulida al 100% puede transmitir un mensaje incorrecto: falta de cuidado, poca seriedad o incluso desinterés. Esto puede afectar tu confianza, cómo te perciben colegas y clientes, y las oportunidades que se te presentan. <span class="accent-color">No dejes que tu potencial se vea limitado por detalles omitidos.</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solution" class="vsl-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h2>Te Presentamos <span class="accent-color">Mi Closet</span>: La Clave para una Imagen Impecable</h2>
+                    <p class="lead mt-3">Hemos creado una colección exclusiva de accesorios de vestir, diseñados meticulosamente para el profesional moderno que comprende que <span class="accent-color">la excelencia reside en los detalles</span>. Cada pieza está pensada no solo para adornar, sino para comunicar con propósito, elegancia y profesionalismo.</p>
+                    <div class="row mt-5 justify-content-center">
+                        <div class="col-md-5 mb-3">
+                            <div class="img-placeholder"><img src="moda.jpg" alt="Descripción del accesorio" class="img-fluid rounded shadow-sm"></div>
+                            </div>
+                        <div class="col-md-5 mb-3">
+                             <div class="img-placeholder"><img src="modaf.jpg" alt="Descripción del accesorio" class="img-fluid rounded shadow-sm"></div>
+                             </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="vsl-section" style="background-color: #1f1f1f;">
+        <div class="container">
+            <h2>Diseñados para <span class="accent-color">Potenciar tu Presencia</span></h2>
+            <p class="lead mb-5">Más que simples accesorios, son herramientas de comunicación no verbal.</p>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch">
+                    <div class="feature-card text-left">
+                        <div class="text-center"><i class="fas fa-gem feature-icon"></i></div>
+                        <h4 class="accent-color">Artesanía Excepcional</h4>
+                        <p>Utilizamos solo materiales de la más alta calidad y procesos de fabricación que garantizan durabilidad y un acabado perfecto. <br><strong>Beneficio:</strong> Invierte en piezas que resisten el paso del tiempo y el uso diario, manteniendo su elegancia y transmitiendo una imagen de calidad superior.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch">
+                     <div class="feature-card text-left">
+                        <div class="text-center"><i class="fas fa-briefcase feature-icon"></i></div>
+                        <h4 class="accent-color">Diseño Sofisticado y Versátil</h4>
+                        <p>Nuestras piezas cuentan con un diseño atemporal y minimalista que se adapta a cualquier código de vestimenta profesional, desde el formal de negocios hasta el casual elegante. <br><strong>Beneficio:</strong> Ahorra tiempo y esfuerzo al elegir tus complementos, sabiendo que siempre lucirás apropiado, pulcro y con estilo.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch mx-auto"> <div class="feature-card text-left">
+                        <div class="text-center"><i class="fas fa-bullseye feature-icon"></i></div>
+                        <h4 class="accent-color">Impacto Sutil pero Poderoso</h4>
+                        <p>Creemos en el "menos es más". Nuestros accesorios están diseñados para complementar, no para dominar, añadiendo ese toque de distinción que te hará memorable. <br><strong>Beneficio:</strong> Proyecta confianza, atención al detalle y un gusto refinado sin ser ostentoso, generando una impresión positiva y duradera.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="vsl-section testimonial-section">
+        <div class="container">
+            <h2>Lo que Profesionales Como Tú <span class="accent-color">Están Diciendo</span></h2>
+            <div class="row mt-5 justify-content-center">
+                <div class="col-lg-5 col-md-6 mb-4">
+                     <div class="testimonial-card">
+                        <p class="testimonial-quote">"Desde que empecé a usar los gemelos de [Nombre de tu Marca], he recibido varios cumplidos en reuniones importantes. Realmente elevan cualquier traje."</p>
+                        <p class="testimonial-author">- Carlos G., Director Financiero</p>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-6 mb-4">
+                     <div class="testimonial-card">
+                        <p class="testimonial-quote">"La calidad y el diseño son impecables. Buscaba algo minimalista pero elegante y lo encontré aquí. ¡Totalmente recomendado!"</p>
+                        <p class="testimonial-author">- Sofía L., Abogada Corporativa</p>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <section id="cta-section" class="vsl-section">
+        <div class="container">
+            <h2>Es el Momento de <span class="accent-color">Definir tu Legado Visual</span></h2>
+            <p class="lead mt-3">Tu imagen profesional es una inversión. Permite que nuestros accesorios sean el detalle que marque la diferencia y te posicione para el éxito.</p>
+            <div class="my-5">
+                <div class="my-5">
+                <div class="video-responsive-wrapper">
+                    <p style="padding: 20px; color: #ccc;"><i><iframe width="560" height="315" src="https://www.youtube.com/embed/kSw5uwen7BM?si=A1jNxiXcrZTU0Wik" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></i></p>
+                </div>
+            </div>
+            <h3 class="mb-3">Descubre la Colección Exclusiva de <span class="accent-color">Mi Closet</span></h3>
+            <p class="h5 mb-4">Por tiempo limitado, <span class="accent-color">obtén un [Tu Oferta Especial: ej. 15% de descuento en tu primera compra / Envío gratuito / Un regalo exclusivo]</span> al unirte a nuestra comunidad de profesionales con estilo.</p>
+            <a href="https://www.ejemplo.com/tienda" target="_blank" class="btn btn-custom-primary btn-lg">Explorar Colección y Obtener Oferta</a>
+            <p class="mt-3"><small>Garantía de Satisfacción del 100% | Envíos Seguros y Discretos</small></p>
+        </div>
+    </section>
+
+    <footer class="footer text-center">
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> Cibertweb.com. Todos los derechos reservados. 2025</p>
+            <p>
+                <a href="#privacidad">Política de Privacidad</a> |
+                <a href="#terminos">Términos de Servicio</a> |
+                <a href="#contacto">Contacto</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Script para funcionalidades interactivas
+        document.addEventListener('DOMContentLoaded', function() {
+            // Actualizar dinámicamente el año en el pie de página
+            const currentYearElement = document.getElementById('currentYear');
+            if (currentYearElement) {
+                currentYearElement.textContent = new Date().getFullYear();
+            }
+
+            // Animación de aparición de secciones al hacer scroll
+            const sections = document.querySelectorAll('.vsl-section');
+            const observerOptions = {
+                root: null, // Observa en relación al viewport
+                rootMargin: '0px',
+                threshold: 0.1 // Se activa cuando el 10% de la sección es visible
+            };
+
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // Opcional: dejar de observar una vez que la animación ha ocurrido
+                        // observer.unobserve(entry.target); 
+                    }
+                    // Para que la animación se repita si se vuelve a scrollear hacia arriba (opcional)
+                    // else {
+                    //     entry.target.classList.remove('is-visible');
+                    // }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+
+            // Desplazamiento suave para enlaces de anclaje (ej. botones de CTA a secciones)
+            const scrollLinks = document.querySelectorAll('a.scroll-link[href^="#"], a[href^="#"]:not([href="#"]):not([href="#0"]):not([data-toggle])'); // Excluye carruseles, etc.
+            scrollLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        e.preventDefault();
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth', // Desplazamiento suave
+                            block: 'start' // Alinea la parte superior del elemento con la parte superior del viewport
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
